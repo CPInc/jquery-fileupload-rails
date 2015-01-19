@@ -428,10 +428,11 @@
                     if(first_occurrence == true) {
                         oe.loaded = 0;
                         e.loaded = 0;
+                        first_occurrence = false;
                     } else {
                         e.loaded = oe.loaded;
-                        first_occurrence = false;
                     }
+                    e.total = oe.total;
                     that._onProgress(e, options);
                 });
                 options.xhr = function () {
