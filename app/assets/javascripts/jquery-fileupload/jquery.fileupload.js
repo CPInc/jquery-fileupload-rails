@@ -412,13 +412,19 @@
                 xhr = options.xhr ? options.xhr() : $.ajaxSettings.xhr();
             // Accesss to the native XHR object is required to add event listeners
             // for the upload progress event:
+            var first_occurrence = true
             if (xhr.upload) {
                 $(xhr.upload).bind('progress', function (e) {
                     var oe = e.originalEvent;
                     // Make sure the progress event properties get copied over:
                     e.lengthComputable = oe.lengthComputable;
-                    e.loaded = oe.loaded;
-                    e.total = oe.total;
+                    if(first_occurrence == true) {
+                        oe.loaded = 0;
+                        e.loaded = 0;
+                    } else {
+                        e.loaded = oe.loaded;
+                        first_occurrence = false;
+                    }
                     that._onProgress(e, options);
                 });
                 options.xhr = function () {
