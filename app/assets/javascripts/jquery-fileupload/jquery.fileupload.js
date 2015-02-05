@@ -31,8 +31,6 @@
         factory(window.jQuery);
     }
 }(function ($) {
-    'use strict';
-
     // Detect file input support, based on
     // http://viljamis.com/blog/2012/file-upload-support-on-mobile/
     $.support.fileInput = !(new RegExp(
